@@ -4,28 +4,37 @@ class Solution:
         :type strs: List[str]
         :rtype: List[List[str]]
         """
-        n = len(strs)
-        res = []
+        # dict = {}
+        from collections import defaultdict
         
-        for i in range(n):
+        ##为了避免不在dict中的key值返回keyerror
+        
+        dict = defaultdict(list)
+        
+        ## 用一种类型作为初始值 如果没有这个key调用时就返回[]
+        
+        for word in strs:
+           
+            sortedword  = ''.join(sorted(word))
             
-            for j in strs[:i]+strs[i+1:] :
-                
-                temp = []
-                
-                if sorted(strs[i]) == sorted(j) :
-                    
-                    temp += [strs[i],j]
-                    # print(temp)
-                    
-                    strs.remove(j)
-            print(strs)
-                    
-            strs.remove(strs[i])
-                    
-            res.append(temp)
+            # dict[sortedword] = [word] if sortedword not in dict else dict[sortedword]+[word]
+            dict[sortedword].append(word)
         
-        return res
+        return [dict[key] for key in dict]
+#         res = []
+            
+#         for key in dict:
+            
+#             res.append(dict[key])
+            
+#         return res
+
+#tag :hashtable
+                
+            
+        
+        
+        
             
                 
                 
